@@ -66,7 +66,7 @@ calling asynchronously or not."
       (if (equal 0 (apply #'call-process zoxide-executable nil t nil args))
           (buffer-string)
         (append-to-buffer "*zoxide*" (point-min) (point-max))
-        (warn "Zoxide error. See output bufer for more details.")))))
+        (warn "Zoxide error. See buffer *zoxide* for more details.")))))
 
 ;;;###autoload
 (defun zoxide-add (&optional path &rest _)
