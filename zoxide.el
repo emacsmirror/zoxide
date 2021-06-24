@@ -107,8 +107,8 @@ list of paths is returned."
   "Similar to `zoxide-query-with', but list all paths instead of matching."
   (interactive)
   (if (called-interactively-p 'any)
-      (funcall-interactively #'zoxide-query-with "-l"))
-  (zoxide-query-with "-l"))
+      (funcall-interactively #'zoxide-query-with "-l")
+    (zoxide-query-with "-l")))
 
 ;;;###autoload
 (defun zoxide-open-with (query callback)
