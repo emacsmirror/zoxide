@@ -1,0 +1,14 @@
+stages:
+  - build
+  - deploy
+
+default:
+  image: ubuntu
+
+build:
+  before_script:
+    - apt update
+    - apt install -y make emacs
+  script:
+    - make
+  stage: build

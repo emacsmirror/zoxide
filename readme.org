@@ -1,0 +1,20 @@
+#+title: Zoxide.el
+#+author: Vonfry
+
+Find file and open directory in special directory with zoxide.
+
+* Functions
+  - ~zoxide-find-file~ :: find file under a path
+  - ~zoxide-find-file-with-query~ :: find file under a path matching query
+  - ~zoxide-cd~ :: change working directory to a path
+  - ~zoxide-cd-with-query~ :: change working directory to a path matching query
+  - ~zoxide-open-with~ :: a help function to query and open dir
+  - ~zoxide-add~ :: add path into database
+  - ~zoxide-remove~ :: remove path from database
+  - ~zoxide-query~ :: list paths matching query
+  - ~zoxide-query-all~ :: list all paths
+
+* Usage
+** Hooks
+   You can add ~zoxide-add~ into serval hooks to add paths automatically, such
+   as ~find-file-hook~, ~projectile-after-switch-project-hook~, etc.
