@@ -8,3 +8,8 @@ clean:
 
 %.elc: %.el
 	$(BATCH) --eval '(byte-compile-file "$<")'
+
+check: check.zoxide
+
+check.%: %.el
+	$(BATCH) "$<" -l ".gitlab/check.el"
