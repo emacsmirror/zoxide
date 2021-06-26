@@ -1,4 +1,4 @@
-;;; zoxide.el --- zoxide support in emacs -*- lexical-binding: t; -*-
+;;; zoxide.el --- Find file by zoxide -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021 Ruoyu Feng
 
@@ -7,7 +7,7 @@
 ;; Created: 23 Jun 2021
 ;; Modified: 23 Jun 2021
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "24.3"))
+;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: converience matching
 ;; URL: https://gitlab.com/Vonfry/zoxide.el
 
@@ -47,19 +47,23 @@
   :group 'zoxide)
 
 (defcustom zoxide-find-file-function #'find-file
-  "The callback function for the target path. If the function is interactive, it
-will be called by `call-interactively' in `default-directory' with target
-path. Otherwise, the target path is passed as argument.
+  "The callback function for the target path.
+This is used by `zoxide-find-file' and `zoxide-find-file-with-query'.  For other
+actions, you can use `zoxide-open-with' instead.  If the function is
+interactive, it will be called by `call-interactively' in
+`default-directory'with target path.  Otherwise, the target path is passed as
+argument.
 
-For example, you set this to `counsel-fzf' to open file with fzf through counsel
-or `dired' to open directory instead of a file."
+For example, you set this to `counsel-fzf' to open file with fzf through
+counsel or `dired' to open directory instead of a file."
   :type 'function
   :group 'zoxide)
 
 ;;;###autoload
 (defun zoxide-run (async &rest args)
-  "Run zoxide command with args. The first argument ASYNC specifies whether
-calling asynchronously or not."
+  "Run zoxide command with args.
+The first argument ASYNC specifies whether calling asynchronously or not.
+The second argument ARGS is passed to zoxide directly, like query -l"
   (if async
       (apply #'start-process "zoxide" "*zoxide*" zoxide-executable args)
     (with-temp-buffer
@@ -70,7 +74,7 @@ calling asynchronously or not."
 
 ;;;###autoload
 (defun zoxide-add (&optional path &rest _)
-  "Add path to zoxide database. This function is called asynchronously."
+  "Add PATH to zoxide database.  This function is called asynchronously."
   (interactive "Dpath: ")
   (unless path
     (setq path default-directory))
@@ -78,7 +82,7 @@ calling asynchronously or not."
 
 ;;;###autoload
 (defun zoxide-remove (&optional path)
-  "Remove path from zoxide database."
+  "Remove PATH from zoxide database."
   (interactive "Dpath: ")
   (unless path
     (setq path default-directory))
@@ -86,9 +90,9 @@ calling asynchronously or not."
 
 ;;;###autoload
 (defun zoxide-query-with (query)
-  "Query zoxide database.
-When calling interactively, it will open a buffer to show results. Otherwise, a
-list of paths is returned."
+  "Search zoxide database with QUERY by calling zoxdie query.
+When calling interactively, it will open a buffer to show results.  Otherwise,
+a list of paths is returned."
   (interactive "squery: ")
   (let ((results  (zoxide-run nil "query" query)))
     (if (called-interactively-p 'any)
@@ -112,7 +116,7 @@ list of paths is returned."
 
 ;;;###autoload
 (defun zoxide-open-with (query callback)
-  "Search query and run callback function with a selected path."
+  "Search QUERY and run CALLBACK function with a selected path."
   (let* ((results (if query
                       (zoxide-query-with query)
                     (zoxide-query)))
@@ -136,14 +140,14 @@ list of paths is returned."
 
 ;;;###autoload
 (defun zoxide-cd-with-query ()
-  "cd into path from zoxide with a search query."
+  "Select default directory through zoxide with a search query."
   (interactive)
   (let ((query (read-string "query: ")))
     (zoxide-open-with query #'cd)))
 
 ;;;###autoload
 (defun zoxide-cd ()
-  "cd into path from zoxide with all paths."
+  "Select default directory through zoxide with all paths."
   (interactive)
   (zoxide-open-with nil #'cd))
 
