@@ -5,9 +5,12 @@
 
 (package-install 'package-lint)
 
+(message "* Package Lint: ")
 
 (with-current-buffer (window-buffer (package-lint-current-buffer))
   (message "%s" (buffer-string)))
+
+(message "* Checkdoc: ")
 
 (checkdoc-current-buffer t)
 
