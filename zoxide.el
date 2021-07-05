@@ -90,7 +90,7 @@ The second argument ARGS is passed to zoxide directly, like query -l"
 
 ;;;###autoload
 (defun zoxide-query-with (query)
-  "Search zoxide database with QUERY by calling zoxdie query.
+  "Search zoxide database with QUERY by calling zoxide query.
 When calling interactively, it will open a buffer to show results.  Otherwise,
 a list of paths is returned."
   (interactive "squery: ")
