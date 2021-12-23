@@ -47,15 +47,20 @@
   :group 'zoxide)
 
 (defcustom zoxide-find-file-function #'find-file
-  "The callback function for the target path.
-This is used by `zoxide-find-file' and `zoxide-find-file-with-query'.  For other
-actions, you can use `zoxide-open-with' instead.  If the function is
-interactive, it will be called by `call-interactively' in
-`default-directory'with target path.  Otherwise, the target path is passed as
+  "The callback function for the target path in `zoxide-find-file'.
+If the function is interactive, it will be called by `call-interactively' in
+`default-directory' with target path. Otherwise, the target path is passed as
 argument.
 
-For example, you set this to `counsel-fzf' to open file with fzf through
-counsel or `dired' to open directory instead of a file."
+For example, you set this to `counsel-fzf' to open file with fzf through counsel
+or `dired' to open directory instead of a file."
+  :type 'function
+  :group 'zoxide)
+
+(defcustom zoxide-travel-callback-function #'find-file
+  "The callback function for the target path in `zoxide-travel'.
+Unlike `zoxide-find-file-function', this always be called with the selected path
+as its first argument noninteractively."
   :type 'function
   :group 'zoxide)
 
@@ -154,6 +159,18 @@ selected path as its first argument."
   (interactive)
   (zoxide-open-with nil #'cd t))
 
+;;;###autoload
+(defun zoxide-travel ()
+  "Like `zoxide-find-file', this function is used to open the path directly."
+  (interactive)
+  (zoxide-open-with nil zoxide-travel-callback-function t))
+
+;;;###autoload
+(defun zoxide-travel-with-query ()
+  "Like `zoxide-travel', a query mached at first."
+  (interactive)
+  (let ((query (read-string "query: ")))
+    (zoxide-open-with query zoxide-travel-callback-function t)))
 (provide 'zoxide)
 
 ;;; zoxide.el ends here
