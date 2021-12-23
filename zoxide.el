@@ -115,13 +115,16 @@ a list of paths is returned."
     (zoxide-query-with "-l")))
 
 ;;;###autoload
-(defun zoxide-open-with (query callback)
-  "Search QUERY and run CALLBACK function with a selected path."
+(defun zoxide-open-with (query callback &optional noninteractive)
+  "Search query and run callback function with a selected path.
+
+If noninteractive is non-nil, the callback is always called directly with the
+selected path as its first argument."
   (let* ((results (if query
                       (zoxide-query-with query)
                     (zoxide-query)))
          (default-directory (completing-read "path: " results nil t)))
-    (if (commandp callback)
+    (if (and (not noninteractive) (commandp callback))
         (call-interactively callback)
       (funcall callback default-directory))))
 
@@ -143,13 +146,13 @@ a list of paths is returned."
   "Select default directory through zoxide with a search query."
   (interactive)
   (let ((query (read-string "query: ")))
-    (zoxide-open-with query #'cd)))
+    (zoxide-open-with query #'cd t)))
 
 ;;;###autoload
 (defun zoxide-cd ()
   "Select default directory through zoxide with all paths."
   (interactive)
-  (zoxide-open-with nil #'cd))
+  (zoxide-open-with nil #'cd t))
 
 (provide 'zoxide)
 
