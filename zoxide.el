@@ -66,9 +66,12 @@ as its first argument noninteractively."
 
 (defcustom zoxide-get-path-function (lambda (&rest _) default-directory)
   "A function how to get current path.
+
 The function should take a argument to get the context and return a string for
 path.
+
 The context may be one of add or remove.
+
 The default defination is get from `default-directory' for add and remove and."
   :type 'function
   :group 'zoxide)
@@ -132,8 +135,12 @@ a list of paths is returned."
 (defun zoxide-open-with (query callback &optional noninteractive)
   "Search query and run callback function with a selected path.
 
-If noninteractive is non-nil, the callback is always called directly with the
-selected path as its first argument."
+If noninteractive is non-nil, the callback is always called
+directly with the selected path as its first argument.
+
+This is a help function to define interactive commands like
+`zoxide-find-file'. If you want to do things noninteractive, please use
+`zoxide-query', filter results and pass it to your function manually instead."
   (let* ((results (if query
                       (zoxide-query-with query)
                     (zoxide-query)))
