@@ -64,6 +64,15 @@ as its first argument noninteractively."
   :type 'function
   :group 'zoxide)
 
+(defcustom zoxide-get-path-function (lambda (&rest _) default-directory)
+  "A function how to get current path.
+The function should take a argument to get the context and return a string for
+path.
+The context may be one of add or remove.
+The default defination is get from `default-directory' for add and remove and."
+  :type 'function
+  :group 'zoxide)
+
 ;;;###autoload
 (defun zoxide-run (async &rest args)
   "Run zoxide command with args.
@@ -82,7 +91,7 @@ The second argument ARGS is passed to zoxide directly, like query -l"
   "Add PATH to zoxide database.  This function is called asynchronously."
   (interactive "Dpath: ")
   (unless path
-    (setq path default-directory))
+    (setq path (funcall zoxide-get-path-function 'add)))
   (zoxide-run t "add" path))
 
 ;;;###autoload
@@ -90,7 +99,7 @@ The second argument ARGS is passed to zoxide directly, like query -l"
   "Remove PATH from zoxide database."
   (interactive "Dpath: ")
   (unless path
-    (setq path default-directory))
+    (setq path (funcall zoxide-get-path-function 'remove)))
   (zoxide-run t "remove" path))
 
 ;;;###autoload
