@@ -49,7 +49,7 @@
 (defcustom zoxide-find-file-function #'find-file
   "The callback function for the target path in `zoxide-find-file'.
 If the function is interactive, it will be called by `call-interactively' in
-`default-directory' with target path. Otherwise, the target path is passed as
+`default-directory' with target path.  Otherwise, the target path is passed as
 argument.
 
 For example, you set this to `counsel-fzf' to open file with fzf through counsel
@@ -133,13 +133,13 @@ a list of paths is returned."
 
 ;;;###autoload
 (defun zoxide-open-with (query callback &optional noninteractive)
-  "Search query and run callback function with a selected path.
+  "Search QUERY and run CALLBACK function with a selected path.
 
-If noninteractive is non-nil, the callback is always called
+If NONINTERACTIVE is non-nil, the callback is always called
 directly with the selected path as its first argument.
 
 This is a help function to define interactive commands like
-`zoxide-find-file'. If you want to do things noninteractive, please use
+`zoxide-find-file'.  If you want to do things noninteractive, please use
 `zoxide-query', filter results and pass it to your function manually instead."
   (let* ((results (if query
                       (zoxide-query-with query)
