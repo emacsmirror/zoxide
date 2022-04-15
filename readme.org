@@ -27,7 +27,7 @@ Find file and open directory in special directory with zoxide.
 ** ~zoxide-find-file-function~
    This can change the default callback function for ~zoxide-find-file~.
 ** ~zoxide-get-path-function~
-   This can change the default action to get path for `zoxide-remove` and
-   `zoxide-add` when `path` is nil.
+   This can change the default action to get path for ~zoxide-remove~ and
+   ~zoxide-add~ when ~path~ is nil.
 ** Evil
    You can bind ~zoxide-find-file~ to ~gz~ or ~gZ~ for quick jump.
