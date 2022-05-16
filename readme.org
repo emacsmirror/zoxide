@@ -31,3 +31,12 @@ Find file and open directory in special directory with zoxide.
    ~zoxide-add~ when ~path~ is nil.
 ** Evil
    You can bind ~zoxide-find-file~ to ~gz~ or ~gZ~ for quick jump.
+** Dired/Dirvish/Ranger/...
+   You can use ~zoxide-open-with~ with ~find-file~ directly or something like
+   that:
+   #+begin_src emacs-lisp :tangle yes
+     (defun dired-jump-with-zoxide (&optional other-window)
+        (interactive "P")
+        (zoxide-open-with nil (lambda (file) (dired-jump other-window file)) t))
+   #+end_src
+
