@@ -5,18 +5,22 @@ Find file and open directory in special directory with zoxide.
 
 * Functions
   - ~zoxide-find-file~ :: find file under a path saved in zoxide. The path is
-    set to default-directory for callback.
+    set to ~default-directory~ and then the callback is run.
   - ~zoxide-find-file-with-query~ :: find file under a path matching query
   - ~zoxide-travel~ :: travel to a path saved in zoxide. The path is the first
     argument passing to callback.
   - ~zoxide-travel-with-query~ :: travel to a path matching query
   - ~zoxide-cd~ :: change working directory to a path
   - ~zoxide-cd-with-query~ :: change working directory to a path matching query
-  - ~zoxide-open-with~ :: a help function to query and open dir
   - ~zoxide-add~ :: add path into database
   - ~zoxide-remove~ :: remove path from database
-  - ~zoxide-query~ :: list paths matching query
-  - ~zoxide-query-all~ :: list all paths
+  - ~zoxide-query~ :: list all paths. This is equal to ~(zoxide-query-with
+    "-l")~.
+  - ~zoxide-query-with~ :: list paths matching query. If you call it
+    interactively, a buffer will be prompted. Otherwise, it returns a list of
+    paths.
+  - ~zoxide-open-with~ :: a help function to query and open dir. It does an
+    action after zoxide-query by selecting with ~completing-read-function~.
 
 * Usage
   Just call functions.
