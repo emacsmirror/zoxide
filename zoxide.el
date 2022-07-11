@@ -49,7 +49,7 @@
 (defcustom zoxide-find-file-function #'find-file
   "The callback function for the target path in `zoxide-find-file'.
 If the function is interactive, it will be called by `call-interactively' in
-`default-directory' with target path.  Otherwise, the target path is passed as
+`efault-directory' with target path.  Otherwise, the target path is passed as
 argument.
 
 For example, you set this to `counsel-fzf' to open file with fzf through counsel
@@ -64,7 +64,8 @@ as its first argument noninteractively."
   :type 'function
   :group 'zoxide)
 
-(defcustom zoxide-get-path-function (lambda (&rest _) default-directory)
+(defcustom zoxide-get-path-function
+  (lambda (&rest _) (expand-file-name default-directory))
   "A function how to get current path.
 
 The function should take a argument to get the context and return a string for
