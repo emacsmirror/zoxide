@@ -122,7 +122,7 @@ a list of paths is returned."
             (erase-buffer)
             (insert results)
             (special-mode)))
-      (split-string results))))
+      (remove "" (split-string results "\n")))))
 
 ;;;###autoload
 (defun zoxide-query ()
