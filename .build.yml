@@ -1,0 +1,13 @@
+image: alpine/latest
+packages:
+  - emacs
+  - make
+tasks:
+  - check: |
+      cd zoxide.el
+      export CI_PROJECT_DIR=$(pwd)
+      make check
+  - build: |
+      cd zoxide.el
+      export CI_PROJECT_DIR=$(pwd)
+      make

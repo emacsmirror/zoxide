@@ -1,7 +1,7 @@
 (setq ci-dir (getenv "CI_PROJECT_DIR")
-      gitlab-dir (expand-file-name ".gitlab" ci-dir))
+      ci-script-dir (expand-file-name ".ci" ci-dir))
 
-(load (expand-file-name "deps" gitlab-dir))
+(load (expand-file-name "deps" ci-script-dir))
 
 (package-install 'package-lint)
 

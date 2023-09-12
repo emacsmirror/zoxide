@@ -12,4 +12,4 @@ clean:
 check: check.zoxide
 
 check.%: %.el
-	$(BATCH) "$<" -l ".gitlab/check.el"
+	$(BATCH) "$<" -l ".ci/check.el"
