@@ -2,10 +2,11 @@
 #+author: Vonfry
 
 Find file and open directory in special directory with zoxide.
-* Descriptions
+* Project
   The project is public at [[https://sr.ht/~vonfry/zoxide.el/][sourcehut]], and source can be get from [[https://git.sr.ht/~vonfry/zoxide.el][here]]. Issues,
   patches and anything else can be discussed by
-  [[mailto:~vonfry/zoxide.el@lists.sr.ht][mailto:~vonfry/zoxide.el@lists.sr.ht]] which lists on [[https://todo.sr.ht/~vonfry/zoxide.el][tickets]] or archived [[https://lists.sr.ht/~vonfry/zoxide.el][here]].
+  [[mailto:~vonfry/zoxide.el@lists.sr.ht][mailto:~vonfry/zoxide.el@lists.sr.ht]] which is archived [[https://lists.sr.ht/~vonfry/zoxide.el][here]].
+  A list of [[https://todo.sr.ht/~vonfry/zoxide.el][tickets]] shows the known issues as well.
 
 * Functions
   - ~zoxide-find-file~ :: find file under a path saved in zoxide. The path is
