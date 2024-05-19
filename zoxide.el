@@ -96,7 +96,7 @@ The second argument ARGS is passed to zoxide directly, like query -l"
   (interactive "Dpath: ")
   (unless path
     (setq path (funcall zoxide-get-path-function 'add)))
-  (zoxide-run t "add" path))
+  (zoxide-run t "add" (expand-file-name path)))
 
 ;;;###autoload
 (defun zoxide-remove (&optional path)
@@ -104,7 +104,7 @@ The second argument ARGS is passed to zoxide directly, like query -l"
   (interactive "Dpath: ")
   (unless path
     (setq path (funcall zoxide-get-path-function 'remove)))
-  (zoxide-run t "remove" path))
+  (zoxide-run t "remove" (expand-file-name path)))
 
 ;;;###autoload
 (defun zoxide-query-with (query)
