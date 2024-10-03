@@ -1,6 +1,6 @@
 image: alpine/latest
 packages:
-  - emacs
+  - emacs-nox
   - make
 tasks:
   - check: |
