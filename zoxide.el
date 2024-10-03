@@ -65,7 +65,7 @@ as its first argument noninteractively."
   :group 'zoxide)
 
 (defcustom zoxide-get-path-function
-  (lambda (&rest _) (expand-file-name default-directory))
+  (lambda (&rest _) default-directory)
   "A function how to get current path.
 
 The function should take a argument to get the context and return a string for
@@ -92,7 +92,10 @@ The second argument ARGS is passed to zoxide directly, like query -l"
 
 ;;;###autoload
 (defun zoxide-add (&optional path &rest _)
-  "Add PATH to zoxide database.  This function is called asynchronously."
+  "Add PATH to zoxide database.  This function is called asynchronously.
+
+Notice: `expand-file-name' is used on path here. If your path aren't compatible
+with it, a new wrapper with `zoxide-run' should be done manually."
   (interactive "Dpath: ")
   (unless path
     (setq path (funcall zoxide-get-path-function 'add)))
@@ -100,7 +103,10 @@ The second argument ARGS is passed to zoxide directly, like query -l"
 
 ;;;###autoload
 (defun zoxide-remove (&optional path)
-  "Remove PATH from zoxide database."
+  "Remove PATH from zoxide database.
+
+Notice: `expand-file-name' is used on path here. If your path aren't compatible
+with it, a new wrapper with `zoxide-run' should be done manually."
   (interactive "Dpath: ")
   (unless path
     (setq path (funcall zoxide-get-path-function 'remove)))
