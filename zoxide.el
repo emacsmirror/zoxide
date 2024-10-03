@@ -94,7 +94,7 @@ The second argument ARGS is passed to zoxide directly, like query -l"
 (defun zoxide-add (&optional path &rest _)
   "Add PATH to zoxide database.  This function is called asynchronously.
 
-Notice: `expand-file-name' is used on path here. If your path aren't compatible
+Notice: `expand-file-name' is used on path here.  If your path aren't compatible
 with it, a new wrapper with `zoxide-run' should be done manually."
   (interactive "Dpath: ")
   (unless path
@@ -105,7 +105,7 @@ with it, a new wrapper with `zoxide-run' should be done manually."
 (defun zoxide-remove (&optional path)
   "Remove PATH from zoxide database.
 
-Notice: `expand-file-name' is used on path here. If your path aren't compatible
+Notice: `expand-file-name' is used on path here.  If your path aren't compatible
 with it, a new wrapper with `zoxide-run' should be done manually."
   (interactive "Dpath: ")
   (unless path
